@@ -1,0 +1,33 @@
+.root{
+    -fx-background-color:  #1D1D1D;
+}
+
+.segoe-white-font{
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: Segoe UI Semibold;
+}
+
+.combobox{
+    -fx-font-size: 15px;
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: white;
+    -fx-prompt-text-fill: whitesmoke;
+}
+
+.textfield{
+    -fx-font-size: 15px;
+    -fx-border-color: transparent transparent #FFFFFF transparent;
+    -fx-background-color: transparent;
+}
+
+.button{
+    -fx-font-size: 17px;
+    -fx-font-width: 3px;
+    -fx-background-color: #2B2A2A;
+    -fx-background-radius: 0px;
+}
+
+.button:hover{
+    -fx-background-color: #4E4A4A;
+}
+
