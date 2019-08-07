@@ -1,53 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="330.0" styleClass="root" stylesheets="@../css/theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
-   <center>
-      <GridPane prefHeight="358.0" prefWidth="330.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <ComboBox fx:id="comboUser" prefHeight="34.0" prefWidth="201.0" promptText="Usuario actual" visibleRowCount="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <styleClass>
-                  <String fx:value="combobox" />
-                  <String fx:value="segoe-white-font" />
-               </styleClass></ComboBox>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginButtonPressed" prefHeight="79.0" prefWidth="330.0" stylesheets="@../css/theme.css" text="Ingresar" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <styleClass>
-                  <String fx:value="segoe-white-font" />
-                  <String fx:value="button" />
-               </styleClass>
-            </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addUserButtonPressed" stylesheets="@../css/theme.css" text="Agregar Usuario" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <styleClass>
-                  <String fx:value="segoe-white-font" />
-                  <String fx:value="button" />
-               </styleClass>
-            </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteUserButtonPressed" stylesheets="@../css/theme.css" text="Eliminar usuario" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <styleClass>
-                  <String fx:value="segoe-white-font" />
-                  <String fx:value="button" />
-               </styleClass>
-            </Button>
-            <Label fx:id="label" style="-fx-font-size: 16px;" styleClass="segoe-white-font" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-         </children>
-      </GridPane>
-   </center>
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+    <top>
+        <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu fx:id="userMenuBar" mnemonicParsing="false" text="Usuario">
+                    <items>
+                        <MenuItem fx:id="listUsersMenu" text="Ver Usuarios" />
+                        <MenuItem fx:id="addUserMenu" text="Agregar usuario" />
+                        <MenuItem fx:id="deleteUserMenu" text="Eliminar usuario" />
+                    </items>            
+                </Menu>
+                <Menu fx:id="reportMenuBar" mnemonicParsing="false" text="Consumo">
+                    <items>
+                        <MenuItem fx:id="addEntryMenu" text="Nueva entrada" />
+                        <MenuItem fx:id="viewEntriesMenu" text="Mostrar consumo" />
+                    </items>
+                </Menu>
+                <Menu fx:id="aboutMenuBar" mnemonicParsing="false" text="Acerca De">
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
 </BorderPane>

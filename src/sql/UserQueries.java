@@ -19,6 +19,7 @@ public class UserQueries {
     private static final String PASSWORD = "U7CiN59KBE";
     
     private Connection connection;
+    private Statement idUser;
     private PreparedStatement addUser;
     private Statement deleteUser;
     private PreparedStatement selectAllUsers;
@@ -31,7 +32,8 @@ public class UserQueries {
                     "INSERT INTO InfoUser "
                     + "(NameUser) VALUES (?)");
             
-            deleteUser = connection.createStatement();
+            idUser = connection.prepareStatement("SELECT idUser "
+                    + "FROM InfoUser WHERE NameUser = '?'");
             
             selectAllUsers = connection.prepareStatement("SELECT NameUser "
                     + "FROM InfoUser");
@@ -39,6 +41,19 @@ public class UserQueries {
         }catch(SQLException sql){
             Logger.getLogger(UserQueries.class.getName()).log(Level.SEVERE, null, sql);
         } 
+    }
+    
+    public int IdUser(String user){
+        try{
+            ResultSet rs = idUser.executeQuery("SELECT idUser "
+                    + "FROM InfoUser WHERE NameUser = '" + user +"'");
+            rs.first();
+            return rs.getInt("idUser");
+            
+        } catch (SQLException sql) {
+            Logger.getLogger(UserQueries.class.getName()).log(Level.SEVERE, null, sql);
+            return -1;
+        }
     }
     
     public int AddUser (String name){
@@ -55,7 +70,7 @@ public class UserQueries {
         
         try {
             return deleteUser.executeUpdate("DELETE FROM InfoUser "
-                    + "WHERE NameUser = '" + name+ "' ");
+                    + "WHERE NameUser = '" + name + "' ");
         } catch (SQLException sql) {
             Logger.getLogger(UserQueries.class.getName()).log(Level.SEVERE, null, sql);
             return 0;
@@ -79,6 +94,7 @@ public class UserQueries {
             return null;
         }
     }
+    
     
     public void Close(){
         try{
