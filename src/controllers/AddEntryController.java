@@ -48,7 +48,6 @@ public class AddEntryController {
     
     @FXML
     void returnButton(ActionEvent e){
-        System.out.println(sql.IdUser(ListUserController.currentUser));
         System.out.println(SQLreport.lastMonth());
     }
 }

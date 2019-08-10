@@ -58,7 +58,7 @@ public class ReportQueries {
         try{
             UserQueries uq = new UserQueries();
             
-            addEntry.setInt(1, uq.IdUser(ListUserController.currentUser));
+//            addEntry.setInt(1, uq.IdUser(ListUserController.currentUser));
             addEntry.setTime(2, Time.valueOf(LocalTime.now()));
             addEntry.setDate(3, Date.valueOf(LocalDate.now()));
             addEntry.setDouble(4, report.getLecturaMes());

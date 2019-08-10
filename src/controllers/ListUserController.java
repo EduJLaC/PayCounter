@@ -11,7 +11,6 @@ import sql.UserQueries;
 public class ListUserController {
 
     @FXML private ListView<String> listView;
-    public static String currentUser;
 
     UserQueries sql = new UserQueries();
     ObservableList<String> listUsers = FXCollections.observableArrayList();
@@ -21,21 +20,9 @@ public class ListUserController {
         listView.setItems(listUsers);
         listUsers.setAll(sql.getAllUsers());
     }
-
-    private void setCurrentUser(String currentUser) {
-        ListUserController.currentUser = currentUser;
-    }
-
+  
     @FXML
-    void userSelected(ActionEvent event) {
-
-        Stage stage = (Stage) listView.getScene().getWindow();
-        setCurrentUser(listView.getSelectionModel().getSelectedItem());
-        stage.close();
-    }
-    
-    @FXML
-    void cancelList(ActionEvent event){
+    void returnList(ActionEvent event){
         Stage stage = (Stage) listView.getScene().getWindow();
         stage.close();
     }

@@ -40,17 +40,9 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        userMenuBar.setGraphic(new ImageView("img/icons8-male-user-48.png"));
-        reportMenuBar.setGraphic(new ImageView("img/icons8-invoice-48.png"));
-        aboutMenuBar.setGraphic(new ImageView("img/icons8-about-48.png"));
         
-        listUsersMenu.setGraphic(new ImageView("img/icons8-add-user-group-man-man-24.png"));
-        addUserMenu.setGraphic(new ImageView("img/icons8-add-user-male-24.png"));
-        deleteUserMenu.setGraphic(new ImageView("img/icons8-delete-user-male-24.png"));
-        
-        addEntryMenu.setGraphic(new ImageView("img/icons8-add-receipt-24.png"));
-        viewEntriesMenu.setGraphic(new ImageView("img/icons8-receipt-24.png"));
-
+        menuIcons();
+        loadUI("../FXMLfiles/addEntry.fxml");
 
         listUsersMenu.setOnAction(e->{
             try {
@@ -102,6 +94,19 @@ public class MainController {
             loadUI("../FXMLfiles/viewEntries.fxml");
         });
         
+    }
+    
+    private void menuIcons(){
+        userMenuBar.setGraphic(new ImageView("img/icons8-male-user-48.png"));
+        reportMenuBar.setGraphic(new ImageView("img/icons8-invoice-48.png"));
+        aboutMenuBar.setGraphic(new ImageView("img/icons8-about-48.png"));
+        
+        listUsersMenu.setGraphic(new ImageView("img/icons8-add-user-group-man-man-24.png"));
+        addUserMenu.setGraphic(new ImageView("img/icons8-add-user-male-24.png"));
+        deleteUserMenu.setGraphic(new ImageView("img/icons8-delete-user-male-24.png"));
+        
+        addEntryMenu.setGraphic(new ImageView("img/icons8-add-receipt-24.png"));
+        viewEntriesMenu.setGraphic(new ImageView("img/icons8-receipt-24.png"));
     }
     
     private void loadUI(String ui){
