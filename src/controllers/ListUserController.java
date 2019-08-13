@@ -13,14 +13,19 @@ public class ListUserController {
     @FXML private ListView<String> listView;
 
     UserQueries sql = new UserQueries();
+    
     ObservableList<String> listUsers = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
         listView.setItems(listUsers);
-        listUsers.setAll(sql.getAllUsers());
+        setNames();
     }
-  
+    
+    void setNames(){
+        listUsers.addAll(sql.getAllUsers());   // Agrega los nombres de los usuarios
+    }
+    
     @FXML
     void returnList(ActionEvent event){
         Stage stage = (Stage) listView.getScene().getWindow();

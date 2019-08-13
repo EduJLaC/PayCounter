@@ -1,4 +1,3 @@
-
 package sql;
 
 import java.sql.Connection;
@@ -12,94 +11,100 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class UserQueries {
+
     private static final String URL = "jdbc:mysql://remotemysql.com:3306/obsZ7jMTsl?autoReconnect=true&useSSL=false";
     private static final String USERNAME = "obsZ7jMTsl";
     private static final String PASSWORD = "U7CiN59KBE";
-    
+
     private Connection connection;
     private Statement idUser;
     private PreparedStatement addUser;
     private Statement deleteUser;
     private PreparedStatement selectAllUsers;
     
-    public UserQueries(){
-        try{
+    public static int nUsers;
+
+    public UserQueries() {
+        try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            
+
             addUser = connection.prepareStatement(
                     "INSERT INTO InfoUser "
-                    + "(NameUser) VALUES (?)");
+                    + "(Username) VALUES (?)");
             
-            idUser = connection.prepareStatement("SELECT idUser "
-                    + "FROM InfoUser WHERE NameUser = '?'");
-            
-            selectAllUsers = connection.prepareStatement("SELECT NameUser "
+            selectAllUsers = connection.prepareStatement("SELECT Username "
                     + "FROM InfoUser");
             
-        }catch(SQLException sql){
-            Logger.getLogger(UserQueries.class.getName()).log(Level.SEVERE, null, sql);
-        } 
-    }
-    
-    public int IdUser(String user){
-        try{
-            ResultSet rs = idUser.executeQuery("SELECT idUser "
-                    + "FROM InfoUser WHERE NameUser = '" + user +"'");
-            rs.first();
-            return rs.getInt("idUser");
-            
+            idUser = connection.createStatement();
+            deleteUser = connection.createStatement();
+
         } catch (SQLException sql) {
             Logger.getLogger(UserQueries.class.getName()).log(Level.SEVERE, null, sql);
-            return -1;
         }
     }
-    
-    public int AddUser (String name){
+
+    public int getId(String user) {
         try {
-            addUser.setString(1, name);
-            return addUser.executeUpdate();
-        }catch(SQLException sql){
+            ResultSet rs = idUser.executeQuery("SELECT idUser FROM "
+                    + "InfoUser WHERE Username = '" + user + "'");
+            rs.first();
+            return rs.getInt("idUser");
+
+        } catch (SQLException sql) {
             Logger.getLogger(UserQueries.class.getName()).log(Level.SEVERE, null, sql);
             return 0;
         }
     }
 
-    public int DeleteUser(String name){
-        
+    public int AddUser(String name) {
         try {
-            return deleteUser.executeUpdate("DELETE FROM InfoUser "
-                    + "WHERE NameUser = '" + name + "' ");
+            addUser.setString(1, name);
+            return addUser.executeUpdate();
         } catch (SQLException sql) {
             Logger.getLogger(UserQueries.class.getName()).log(Level.SEVERE, null, sql);
             return 0;
         }
-        
     }
-    
-    public List<String> getAllUsers(){
-        
-        try (ResultSet resultSet = selectAllUsers.executeQuery()){
-            List<String> results = new ArrayList<>();
+
+    public int DeleteUser(String name) {
+
+        try {
+            return deleteUser.executeUpdate("DELETE FROM InfoUser "
+                    + "WHERE Username = '" + name + "' ");
+        } catch (SQLException sql) {
+            Logger.getLogger(UserQueries.class.getName()).log(Level.SEVERE, null, sql);
+            return 0;
+        }
+
+    }
+
+    public List<String> getAllUsers() {
+
+        try (ResultSet rs = selectAllUsers.executeQuery()) {
+
+            List<String> users = new ArrayList<>();
+            int n = 0;
             
-            while(resultSet.next()){
-                results.add(resultSet.getString("NameUser"));
+            while (rs.next()) {
+                users.add(rs.getString(1));
+                n++;
             }
             
-            return results;
-            
-        }catch(SQLException sql){
+            nUsers = n;
+
+            return users;
+
+        } catch (SQLException sql) {
             Logger.getLogger(UserQueries.class.getName()).log(Level.SEVERE, null, sql);
             return null;
         }
     }
-    
-    
-    public void Close(){
-        try{
+
+    public void Close() {
+        try {
             connection.close();
-        }catch (SQLException sql){
+        } catch (SQLException sql) {
             Logger.getLogger(UserQueries.class.getName()).log(Level.SEVERE, null, sql);
         }
     }

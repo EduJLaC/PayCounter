@@ -21,17 +21,17 @@ public class DeleteUserController {
     void deleteUserButtonPressed(ActionEvent event) {
 
         Optional<ButtonType> result;
-        result = displayAlert(Alert.AlertType.CONFIRMATION,
+        result = Classes.Alert.displayAlert(Alert.AlertType.CONFIRMATION,
                 "Confirmación", "¿Desea eliminar este usuario?");
         Stage stage = (Stage) nameField.getScene().getWindow();
 
         if (result.get() == ButtonType.OK) {
             int res = sql.DeleteUser(nameField.getText());
             if (res == 0) {
-                displayAlert(Alert.AlertType.ERROR,
+                Classes.Alert.displayAlert(Alert.AlertType.ERROR,
                         "Error", "Ocurrió un problema, inténtelo de nuevo.");
             }else{
-                displayAlert(Alert.AlertType.INFORMATION,"Exito",
+                Classes.Alert.displayAlert(Alert.AlertType.INFORMATION,"Exito",
                     "Usuario eliminado exitosamente");
                 stage.close();
             }
@@ -44,11 +44,4 @@ public class DeleteUserController {
         stage.close();
     }
 
-    private Optional<ButtonType> displayAlert(
-            Alert.AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        return alert.showAndWait();
-    }
 }

@@ -27,15 +27,15 @@ public class AddUserController {
 
         Optional<ButtonType> result;
         Stage stage = (Stage) nameField.getScene().getWindow();
-        result = displayAlert(Alert.AlertType.CONFIRMATION,
+        result = Classes.Alert.displayAlert(Alert.AlertType.CONFIRMATION,
                 "Confirmación", "¿Desea agregar este usuario?");
         if (result.get() == ButtonType.OK) {
             int res = sql.AddUser(nameField.getText());
             if (res == 0) {
-                displayAlert(Alert.AlertType.ERROR,
+                Classes.Alert.displayAlert(Alert.AlertType.ERROR,
                         "Error", "Ocurrió un problema, inténtelo de nuevo.");
             }else{
-                displayAlert(Alert.AlertType.INFORMATION,"Exito",
+                Classes.Alert.displayAlert(Alert.AlertType.INFORMATION,"Exito",
                     "Usuario agregado exitosamente");
                 stage.close();
             }
@@ -52,11 +52,4 @@ public class AddUserController {
         stage.close();
     }
 
-    private Optional<ButtonType> displayAlert(
-            Alert.AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        return alert.showAndWait();
-    }
 }

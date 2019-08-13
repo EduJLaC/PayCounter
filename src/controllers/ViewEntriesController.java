@@ -23,10 +23,7 @@ public class ViewEntriesController {
 
         TableColumn<String, Report> c4 = new TableColumn("Total a pagar");
 
-        tableView.getColumns().add(c1);
-        tableView.getColumns().add(c2);
-        tableView.getColumns().add(c3);
-        tableView.getColumns().add(c4);
+        tableView.getColumns().addAll(c1, c2, c3, c4);
         
         c1.prefWidthProperty().bind(tableView.widthProperty().multiply(0.25));
         c2.prefWidthProperty().bind(tableView.widthProperty().multiply(0.25));

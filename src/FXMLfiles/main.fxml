@@ -22,8 +22,6 @@
                         <MenuItem fx:id="viewEntriesMenu" text="Mostrar consumo" />
                     </items>
                 </Menu>
-                <Menu fx:id="aboutMenuBar" mnemonicParsing="false" text="Acerca De">
-                </Menu>
             </menus>
         </MenuBar>
     </top>

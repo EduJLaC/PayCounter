@@ -41,6 +41,7 @@ public class MainController {
     @FXML
     public void initialize() {
         
+        addMenuItems();
         menuIcons();
         loadUI("../FXMLfiles/addEntry.fxml");
 
@@ -94,6 +95,11 @@ public class MainController {
             loadUI("../FXMLfiles/viewEntries.fxml");
         });
         
+    }
+    
+    private void addMenuItems(){
+        aboutMenuBar = new Menu("Acerca De");
+        menuBar.getMenus().add(aboutMenuBar);
     }
     
     private void menuIcons(){

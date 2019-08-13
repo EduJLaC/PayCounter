@@ -1,20 +1,32 @@
 package Classes;
 
+import sql.UserQueries;
+
 public class Report {
 
-    private final double lecturaMes;
-    private final double cargoFijo;
-    private final double mantConexion;
-    private final double consumoEnergia;
-    private final double alumbradoPublico;
-    private final double interesComp;
-    private final double electRural;
-    private final double opcional;
+    private int idUser;
+    private String username;
+    private double lecturaMes;
+    private double cargoFijo;
+    private double mantConexion;
+    private double consumoEnergia;
+    private double alumbradoPublico;
+    private double interesComp;
+    private double electRural;
+    private double opcional;
+    private double payment;
+    
+    UserQueries SQLuser = new UserQueries();
 
-    public Report(double lecturaMes, double cargoFijo, double mantConexion,
+    public Report(){
+        
+    }
+    
+    public Report(String user, double lecturaMes, double cargoFijo, double mantConexion,
             double consumoEnergia, double alumbradoPublico, double interesComp,
-            double electRural, double opcional) {
+            double electRural, String opcional) {
 
+        this.idUser = SQLuser.getId(user);
         this.lecturaMes = lecturaMes;
         this.cargoFijo = cargoFijo;
         this.mantConexion = mantConexion;
@@ -22,7 +34,34 @@ public class Report {
         this.alumbradoPublico = alumbradoPublico;
         this.interesComp = interesComp;
         this.electRural = electRural;
-        this.opcional = opcional;
+        this.opcional = sumOpc(opcional);
+    }
+    
+    
+    public Report(String username, double payment){
+        this.username = username;
+        this.payment = payment;
+    }
+    
+    private double sumOpc(String entrada){
+        entrada = entrada.trim();
+        entrada = entrada.replaceAll(" ", "");
+        String temp[] = entrada.split(",");
+        double sum = 0;
+        
+        for (String n : temp) {
+            sum = sum + Double.parseDouble(n);
+        }
+        
+        return sum;
+    }
+    
+    public int getidUser(){
+        return idUser;
+    }
+    
+    public String getUsername(){
+        return username;
     }
 
     public double getLecturaMes() {
@@ -56,19 +95,21 @@ public class Report {
     public double getOpcional() {
         return opcional;
     }
-
-    public double totalMonth(double antMes) {
+    
+    public double getPayment(){
+        return payment;
+    }
+    
+    public void totalMonth(double antMes) {
 
         double consumo = lecturaMes - antMes;
         consumo = consumo * consumoEnergia;
         double sumaImpuestos;
-        double total;
 
         sumaImpuestos = (cargoFijo + mantConexion + alumbradoPublico
-                + interesComp + electRural + opcional) / 5;
+                + interesComp + electRural + opcional) / UserQueries.nUsers;
 
         sumaImpuestos = sumaImpuestos + consumo;
-        total = sumaImpuestos + sumaImpuestos * 0.18;
-        return total;
+        payment = sumaImpuestos + sumaImpuestos * 0.18;
     }
 }
