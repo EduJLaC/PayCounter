@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/8.0.211" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddEntryController">
+<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="559.0" styleClass="root" stylesheets="@../css/theme.css" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddEntryController">
   <columnConstraints>
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="318.0" minWidth="10.0" prefWidth="298.0" />
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="318.0" minWidth="10.0" prefWidth="261.0" />
@@ -38,7 +38,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Lectura del mes" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label alignment="CENTER" styleClass="segoe-white-font" text="Lectura del mes" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <TextField fx:id="LMField" prefHeight="25.0" prefWidth="148.0" GridPane.columnIndex="1">
                <opaqueInsets>
                   <Insets right="20.0" />
@@ -46,6 +46,10 @@
                <GridPane.margin>
                   <Insets left="5.0" right="30.0" />
                </GridPane.margin>
+               <styleClass>
+                  <String fx:value="textfield" />
+                  <String fx:value="segoe-white-font" />
+               </styleClass>
             </TextField>
             <ComboBox fx:id="comboUser" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
@@ -54,7 +58,7 @@
             </ComboBox>
          </children>
       </GridPane>
-      <Label text="Cargo Fijo" GridPane.rowIndex="1">
+      <Label styleClass="segoe-white-font" text="Cargo Fijo" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -84,14 +88,14 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <Label text="Adicionales (Separar por comas)" GridPane.rowIndex="7">
+      <Label styleClass="segoe-white-font" text="Adicionales" GridPane.rowIndex="7">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
       </Label>
       <TextField fx:id="CFField" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets left="50.0" right="70.0" />
+            <Insets bottom="8.0" left="50.0" right="70.0" />
          </GridPane.margin>
          <styleClass>
             <String fx:value="textfield" />
@@ -100,7 +104,7 @@
       </TextField>
       <TextField fx:id="MCField" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets left="50.0" right="70.0" />
+            <Insets bottom="8.0" left="50.0" right="70.0" />
          </GridPane.margin>
          <styleClass>
             <String fx:value="textfield" />
@@ -109,7 +113,7 @@
       </TextField>
       <TextField fx:id="CEField" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets left="50.0" right="70.0" />
+            <Insets bottom="8.0" left="50.0" right="70.0" />
          </GridPane.margin>
          <styleClass>
             <String fx:value="textfield" />
@@ -118,7 +122,7 @@
       </TextField>
       <TextField fx:id="APField" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets left="50.0" right="70.0" />
+            <Insets bottom="8.0" left="50.0" right="70.0" />
          </GridPane.margin>
          <styleClass>
             <String fx:value="textfield" />
@@ -127,7 +131,7 @@
       </TextField>
       <TextField fx:id="ICField" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets left="50.0" right="70.0" />
+            <Insets bottom="8.0" left="50.0" right="70.0" />
          </GridPane.margin>
          <styleClass>
             <String fx:value="textfield" />
@@ -136,7 +140,7 @@
       </TextField>
       <TextField fx:id="ERField" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets left="50.0" right="70.0" />
+            <Insets bottom="8.0" left="50.0" right="70.0" />
          </GridPane.margin>
          <styleClass>
             <String fx:value="textfield" />
@@ -145,24 +149,29 @@
       </TextField>
       <TextField fx:id="opcField" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets left="50.0" right="70.0" />
+            <Insets bottom="8.0" left="50.0" right="70.0" />
          </GridPane.margin>
          <styleClass>
             <String fx:value="textfield" />
             <String fx:value="segoe-white-font" />
          </styleClass>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </TextField>
       <GridPane GridPane.columnSpan="2" GridPane.rowIndex="8">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addButton" text="Ingresar" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showButton" text="Mostrar entradas" GridPane.columnIndex="1" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addButton" styleClass="segoe-white-font" text="Ingresar" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showButton" styleClass="segoe-white-font" text="Mostrar entradas" GridPane.columnIndex="2" />
+            <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modifyButton" styleClass="segoe-white-font" text="Modificar" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>

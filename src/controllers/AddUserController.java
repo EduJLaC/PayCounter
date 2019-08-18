@@ -1,5 +1,6 @@
 package controllers;
 
+import Classes.AlertDialog;
 import sql.UserQueries;
 import java.util.Optional;
 import javafx.event.ActionEvent;
@@ -23,19 +24,19 @@ public class AddUserController {
     }
 
     @FXML
-    void addUserButtonPressed(ActionEvent event) {
-
+    void addUserButtonPressed(ActionEvent event){
+        AlertDialog alert = new AlertDialog();
         Optional<ButtonType> result;
         Stage stage = (Stage) nameField.getScene().getWindow();
-        result = Classes.Alert.displayAlert(Alert.AlertType.CONFIRMATION,
-                "Confirmación", "¿Desea agregar este usuario?");
+        result = alert.displayAlert(Alert.AlertType.CONFIRMATION,
+                "Añadir Usuario", "¿Desea agregar este usuario?");
         if (result.get() == ButtonType.OK) {
             int res = sql.AddUser(nameField.getText());
             if (res == 0) {
-                Classes.Alert.displayAlert(Alert.AlertType.ERROR,
+                alert.displayAlert(Alert.AlertType.ERROR,
                         "Error", "Ocurrió un problema, inténtelo de nuevo.");
             }else{
-                Classes.Alert.displayAlert(Alert.AlertType.INFORMATION,"Exito",
+                alert.displayAlert(Alert.AlertType.INFORMATION,"Exito",
                     "Usuario agregado exitosamente");
                 stage.close();
             }

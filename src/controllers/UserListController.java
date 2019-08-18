@@ -8,7 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import sql.UserQueries;
 
-public class ListUserController {
+public class UserListController {
 
     @FXML private ListView<String> listView;
 

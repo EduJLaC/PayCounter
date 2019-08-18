@@ -1,115 +1,105 @@
 package Classes;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import sql.UserQueries;
 
 public class Report {
 
     private int idUser;
-    private String username;
+    private LocalTime time;
+    private LocalDate date;
     private double lecturaMes;
-    private double cargoFijo;
-    private double mantConexion;
-    private double consumoEnergia;
-    private double alumbradoPublico;
-    private double interesComp;
-    private double electRural;
-    private double opcional;
     private double payment;
-    
-    UserQueries SQLuser = new UserQueries();
+    private String username;
 
-    public Report(){
-        
+    public Report() {
+
     }
-    
-    public Report(String user, double lecturaMes, double cargoFijo, double mantConexion,
+
+    public Report(int idUser, LocalTime time, LocalDate date, double lecturaMes,
+            double antMes, double cargoFijo, double mantConexion,
             double consumoEnergia, double alumbradoPublico, double interesComp,
             double electRural, String opcional) {
-
-        this.idUser = SQLuser.getId(user);
+        this.idUser = idUser;
+        this.time = time;
+        this.date = date;
         this.lecturaMes = lecturaMes;
-        this.cargoFijo = cargoFijo;
-        this.mantConexion = mantConexion;
-        this.consumoEnergia = consumoEnergia;
-        this.alumbradoPublico = alumbradoPublico;
-        this.interesComp = interesComp;
-        this.electRural = electRural;
-        this.opcional = sumOpc(opcional);
+        this.payment = totalMonth(lecturaMes, antMes, cargoFijo, mantConexion, 
+                consumoEnergia, alumbradoPublico, interesComp, electRural, opcional);
     }
-    
+
+    public Report(String username, LocalTime time, LocalDate date, 
+            double lecturaMes, double payment) {
+        this.username = username;
+        this.time = time;
+        this.date = date;
+        this.lecturaMes = lecturaMes;
+        this.payment = payment;
+    }
     
     public Report(String username, double payment){
         this.username = username;
         this.payment = payment;
     }
-    
-    private double sumOpc(String entrada){
+
+    private static double sumOpc(String entrada) {
         entrada = entrada.trim();
         entrada = entrada.replaceAll(" ", "");
         String temp[] = entrada.split(",");
         double sum = 0;
-        
+
         for (String n : temp) {
             sum = sum + Double.parseDouble(n);
         }
-        
+
         return sum;
     }
-    
-    public int getidUser(){
+
+    public int getidUser() {
         return idUser;
     }
-    
-    public String getUsername(){
-        return username;
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 
     public double getLecturaMes() {
         return lecturaMes;
     }
 
-    public double getCargoFijo() {
-        return cargoFijo;
-    }
-
-    public double getMantConexion() {
-        return mantConexion;
-    }
-
-    public double getConsumoEnergia() {
-        return consumoEnergia;
-    }
-
-    public double getAlumbradoPublico() {
-        return alumbradoPublico;
-    }
-
-    public double getInteresComp() {
-        return interesComp;
-    }
-
-    public double getElectRural() {
-        return electRural;
-    }
-
-    public double getOpcional() {
-        return opcional;
-    }
-    
-    public double getPayment(){
+    public double getPayment() {
         return payment;
     }
+
+    public void setPayment(double payment) {
+        this.payment = payment;
+    }
     
-    public void totalMonth(double antMes) {
+    public String getUsername(){
+        return username;
+    }
+
+    public final double totalMonth(double lecturaMes, double antMes, 
+            double cargoFijo, double mantConexion, double consumoEnergia, 
+            double alumbradoPublico, double interesComp,
+            double electRural, String opcional) {
 
         double consumo = lecturaMes - antMes;
         consumo = consumo * consumoEnergia;
         double sumaImpuestos;
 
         sumaImpuestos = (cargoFijo + mantConexion + alumbradoPublico
-                + interesComp + electRural + opcional) / UserQueries.nUsers;
+                + interesComp + electRural + sumOpc(opcional))/ UserQueries.nUsers;
 
-        sumaImpuestos = sumaImpuestos + consumo;
-        payment = sumaImpuestos + sumaImpuestos * 0.18;
+        sumaImpuestos = sumaImpuestos + consumo;     
+        BigDecimal bigDecimal = new BigDecimal(sumaImpuestos + sumaImpuestos * 0.18).setScale(2, RoundingMode.UP);
+        return bigDecimal.doubleValue();
     }
 }

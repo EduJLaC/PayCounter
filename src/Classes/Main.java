@@ -13,11 +13,12 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("../FXMLfiles/main.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/FXMLfiles/main.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Contador");
         stage.getIcons().add(new Image("img/icons8-idea-bank-100.png"));
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
